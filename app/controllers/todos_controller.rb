@@ -2,7 +2,8 @@ class TodosController < ApplicationController
   before_action :authenticate
 
   def index
-    @todos = todos
+    @incomplete_todos = todos.incomplete
+    @completed_todos = todos.completed
   end
 
   def new

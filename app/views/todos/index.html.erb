@@ -1,7 +1,18 @@
 <%= link_to "Create a new todo", new_todo_path %>
 
-<ul class="todos">
-  <% @todos.each do |todo| %>
-    <li><%= todo.title %></li>
+<ul class="todos incomplete">
+  <% @incomplete_todos.each do |todo| %>
+    <li>
+      <%= todo.title %>
+      <%= link_to "Mark complete", todo_completions_path(todo), method: :post %>
+    </li>
+  <% end %>
+</ul>
+
+<ul class="todos completed">
+  <% @completed_todos.each do |todo| %>
+    <li>
+      <%= todo.title %>
+    </li>
   <% end %>
 </ul>

@@ -8,6 +8,14 @@ class ApplicationController < ActionController::Base
   end
 
   def signed_in?
-    !!session[:current_email]
+    !!current_email
+  end
+
+  def current_email
+    session[:current_email]
+  end
+
+  def sign_in(email)
+    session[:current_email] = email
   end
 end

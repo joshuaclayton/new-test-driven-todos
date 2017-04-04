@@ -4,7 +4,13 @@ class SessionsController < ApplicationController
   end
 
   def create
-    session[:current_email] = params.require(:session).permit(:email)[:email]
+    sign_in(session_params[:email])
     redirect_to root_path
+  end
+
+  private
+
+  def session_params
+    params.require(:session).permit(:email)
   end
 end

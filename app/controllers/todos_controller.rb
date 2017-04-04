@@ -2,15 +2,25 @@ class TodosController < ApplicationController
   before_action :authenticate
 
   def index
-    @todos = Todo.where(owner_email: session[:current_email])
+    @todos = todos
   end
 
   def new
-    @todo = Todo.new
+    @todo = todos.new
   end
 
   def create
-    Todo.create(params.require(:todo).permit(:title).merge(owner_email: session[:current_email]))
+    todos.create(todo_params)
     redirect_to root_path
+  end
+
+  private
+
+  def todos
+    Todo.where(owner_email: current_email)
+  end
+
+  def todo_params
+    params.require(:todo).permit(:title)
   end
 end

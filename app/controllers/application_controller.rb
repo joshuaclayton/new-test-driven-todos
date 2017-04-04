@@ -18,4 +18,8 @@ class ApplicationController < ActionController::Base
   def sign_in(email)
     session[:current_email] = email
   end
+
+  def current_user
+    User.new(current_email)
+  end
 end

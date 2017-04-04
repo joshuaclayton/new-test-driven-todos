@@ -17,7 +17,7 @@ class TodosController < ApplicationController
   private
 
   def todos
-    Todo.where(owner_email: current_email)
+    current_user.todos
   end
 
   def todo_params

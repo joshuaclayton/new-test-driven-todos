@@ -2,7 +2,7 @@ require "rails_helper"
 
 RSpec.feature "User marks a todo complete" do
   scenario "successfully" do
-    sign_in
+    sign_in_as "person@example.com"
     create_todo "Buy milk"
     mark_todo_complete "Buy milk"
 
